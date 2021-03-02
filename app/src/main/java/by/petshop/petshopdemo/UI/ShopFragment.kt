@@ -37,7 +37,7 @@ class ShopFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         shopViewModel.getDataVm()
 
-        shopViewModel.catalogLive.observe(activity as MainActivity, Observer {
+        shopViewModel.catalogLive.observe(activity as MainActivity, {
             shopCatalog.clear()
             shopCatalog.addAll(it)
             recycleViewFm?.adapter?.notifyDataSetChanged()

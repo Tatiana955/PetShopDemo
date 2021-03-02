@@ -1,6 +1,7 @@
 package by.petshop.petshopdemo.UI
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,9 @@ class DetailsFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        val tInflater = TransitionInflater.from(requireContext())
+        enterTransition = tInflater.inflateTransition(R.transition.slide_right)
+        exitTransition = tInflater.inflateTransition(R.transition.slide_left)
         shopViewModel = ViewModelProvider(activity as MainActivity).get(ShopViewModel::class.java)
         return inflater.inflate(R.layout.fragment_details, container, false)
     }
