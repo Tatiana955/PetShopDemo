@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/shopFragment">
+    <fragment
+        android:id="@+id/shopFragment"
+        android:name="by.petshop.petshopdemo.UI.ShopFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_shop"
+        />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="by.petshop.petshopdemo.UI.FavoritesFragment"
+        android:label="@string/title_favorites"
+        tools:layout="@layout/fragment_favorites"
+        />
+    <fragment
+        android:id="@+id/basketFragment"
+        android:name="by.petshop.petshopdemo.UI.BasketFragment"
+        android:label="@string/title_basket"
+        tools:layout="@layout/fragment_basket"
+        />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="by.petshop.petshopdemo.UI.DetailsFragment"
+        android:label="@string/title_details"
+        tools:layout="@layout/fragment_details"
+        />
+</navigation>

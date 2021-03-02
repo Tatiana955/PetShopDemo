@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/for_shop_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginStart="2dp"
+    android:layout_marginEnd="2dp"
+    android:id="@+id/layout_shop">
+    <ImageView
+        android:id="@+id/ivFavorites"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:scaleType="fitCenter"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:srcCompat="@drawable/ic_not_favorites"
+        android:visibility="visible" />
+    <ImageView
+        android:id="@+id/ivDelete"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:scaleType="fitCenter"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:srcCompat="@drawable/ic_delete"
+        android:visibility="gone" />
+    <ImageView
+        android:id="@+id/ivBasket"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:scaleType="fitCenter"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/price"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/ic_not_basket"
+        android:visibility="visible" />
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/price"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:visibility="gone" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="6dp">
+        <ImageView
+            android:id="@+id/textPhoto"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="fitCenter"
+            android:background="@color/white2"
+            app:srcCompat="@drawable/no_photo" />
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:id="@+id/textName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/cardView"
+        android:layout_toEndOf="@+id/cardView"
+        android:hint="@string/name"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/shadow1"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="50dp" />
+    <TextView
+        android:id="@+id/ageOrWeightOrSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/shadow1"
+        android:layout_below="@+id/textName"
+        android:layout_alignStart="@+id/textName"
+        android:layout_alignEnd="@+id/textName"
+        android:layout_toStartOf="@+id/ivFavorites"
+        android:layout_marginBottom="10dp" />
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/price"
+        android:textSize="12sp"
+        android:textColor="@color/shadow1"
+        android:layout_below="@+id/ageOrWeightOrSize"
+        android:layout_alignStart="@+id/textName"
+        android:layout_marginBottom="10dp" />
+    <TextView
+        android:id="@+id/textPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/_200_0"
+        android:textSize="12sp"
+        android:textColor="@color/shadow1"
+        android:layout_below="@+id/ageOrWeightOrSize"
+        android:layout_toEndOf="@+id/price"
+        android:layout_marginStart="5dp" />
+    <TextView
+        android:id="@+id/price2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/price_1"
+        android:textSize="12sp"
+        android:textColor="@color/shadow1"
+        android:layout_below="@+id/ageOrWeightOrSize"
+        android:layout_toEndOf="@+id/textPrice"
+        android:layout_marginStart="5dp" />
+</RelativeLayout>

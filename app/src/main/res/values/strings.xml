@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">PetShopDemo</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_home">Каталог</string>
+    <string name="title_favorites">Избранное</string>
+    <string name="title_basket">Корзина</string>
+    <string name="title_store">Магазин</string>
+    <string name="title_details">Подробная информация</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_closed">Closed</string>
+    <string name="name">Названиe</string>
+    <string name="price">Цена: </string>
+    <string name="_200_0">200.0</string>
+    <string name="price_1">р.</string>
+    <string name="ageOrWeightOrSize">ageOrWeightOrSize</string>
+    <string name="sort">Сортировка</string>
+    <string name="petshop">PetShop</string>
+    <string name="_null">Null</string>
+    <string name="description">Description</string>
+    <string name="_description">Описание</string>
+    <string name="buttonAdd">Оформить заказ</string>
+
+    <string-array name="spinner_array">
+        <item>Все категории</item>
+        <item>Питомцы</item>
+        <item>Корм</item>
+        <item>Вещи</item>
+        <item>Наполнители</item>
+    </string-array>
+</resources>
