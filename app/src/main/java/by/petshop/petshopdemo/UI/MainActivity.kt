@@ -16,10 +16,11 @@ import by.petshop.petshopdemo.RemoteModel.RemoteModel
 import by.petshop.petshopdemo.Repository.Repository
 import by.petshop.petshopdemo.ViewModel.ShopViewModel
 import by.petshop.petshopdemo.ViewModel.ShopViewModelFactory
-import kotlinx.android.synthetic.main.activity_main.*
+import by.petshop.petshopdemo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private lateinit var navControllerBottom: NavController
     private lateinit var bottomNavView: BottomNavigationView
@@ -27,18 +28,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
         
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
 
         navController = findNavController(R.id.navHost)
-        setupActionBarWithNavController(navController, drawer_layout)
-        toolbar.setupWithNavController(navController, drawer_layout)
-        nav_view.setupWithNavController(navController)
+        setupActionBarWithNavController(navController, binding.drawerLayout)
+        binding.toolbar.setupWithNavController(navController, binding.drawerLayout)
+        binding.navView.setupWithNavController(navController)
 
         bottomNavView = findViewById(R.id.nav_view_bottom)
         navControllerBottom = findNavController(R.id.navHost)
-        setupActionBarWithNavController(navControllerBottom, drawer_layout)
+        setupActionBarWithNavController(navControllerBottom, binding.drawerLayout)
         bottomNavView.setupWithNavController(navControllerBottom)
 
         val remoteModel = RemoteModel()

@@ -14,10 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.petshop.petshopdemo.R
 import by.petshop.petshopdemo.RemoteModel.ShopCatalog
 import by.petshop.petshopdemo.ViewModel.ShopViewModel
-import kotlinx.android.synthetic.main.fragment_basket.*
+import by.petshop.petshopdemo.databinding.FragmentBasketBinding
 
 class BasketFragment : Fragment() {
 
+    private var _binding: FragmentBasketBinding? = null
+    private val binding get() = _binding!!
     private lateinit var navController: NavController
     private lateinit var shopViewModel: ShopViewModel
     private lateinit var adapter: BasketAdapter
@@ -28,7 +30,8 @@ class BasketFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         shopViewModel = ViewModelProvider(activity as MainActivity).get(ShopViewModel::class.java)
-        return inflater.inflate(R.layout.fragment_basket, container, false)
+        _binding = FragmentBasketBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,10 +43,10 @@ class BasketFragment : Fragment() {
         list.addAll(shopViewModel.basket)
 
         adapter = BasketAdapter(list, this, activity as MainActivity)
-        recycleViewFb.adapter = adapter
-        recycleViewFb.layoutManager = LinearLayoutManager(requireContext())
+        binding.recycleViewFb.adapter = adapter
+        binding.recycleViewFb.layoutManager = LinearLayoutManager(requireContext())
 
-        buttonClick.setOnClickListener {
+        binding.buttonClick.setOnClickListener {
             val toast = Toast.makeText(context, "Заказ оформлен", Toast.LENGTH_LONG)
             toast.setGravity(Gravity.TOP or Gravity.END, 0, 0)
             toast.show()
@@ -61,5 +64,10 @@ class BasketFragment : Fragment() {
         list.clear()
         list.addAll(shopViewModel.basket)
         adapter.notifyDataSetChanged()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

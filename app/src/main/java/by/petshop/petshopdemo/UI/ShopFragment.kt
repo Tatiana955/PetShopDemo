@@ -13,10 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.petshop.petshopdemo.R
 import by.petshop.petshopdemo.RemoteModel.*
 import by.petshop.petshopdemo.ViewModel.ShopViewModel
-import kotlinx.android.synthetic.main.fragment_shop.*
+import by.petshop.petshopdemo.databinding.FragmentShopBinding
 
 class ShopFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
+    private var frBinding: FragmentShopBinding? = null
     private lateinit var navController: NavController
     private lateinit var shopViewModel: ShopViewModel
     private lateinit var adapter: ShopAdapter
@@ -28,7 +29,9 @@ class ShopFragment : Fragment(), AdapterView.OnItemSelectedListener {
         savedInstanceState: Bundle?
     ): View? {
         shopViewModel = ViewModelProvider(activity as MainActivity).get(ShopViewModel::class.java)
-        return inflater.inflate(R.layout.fragment_shop, container, false)
+        val binding = FragmentShopBinding.inflate(inflater, container, false)
+        frBinding = binding
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,27 +43,27 @@ class ShopFragment : Fragment(), AdapterView.OnItemSelectedListener {
         shopViewModel.catalogLive.observe(activity as MainActivity, {
             shopCatalog.clear()
             shopCatalog.addAll(it)
-            recycleViewFm?.adapter?.notifyDataSetChanged()
-            recycleViewFm?.visibility = View.VISIBLE
-            relativeLayout?.visibility = View.VISIBLE
-            progressBarFm?.visibility = View.GONE
+            frBinding?.recyclerViewFs?.adapter?.notifyDataSetChanged()
+            frBinding?.recyclerViewFs?.visibility = View.VISIBLE
+            frBinding?.relativeLayout?.visibility = View.VISIBLE
+            frBinding?.progressBarFm?.visibility = View.GONE
             arrayList.clear()
             arrayList.addAll(shopCatalog.toTypedArray())
         })
 
         adapter = ShopAdapter(shopCatalog, this, activity as MainActivity, arrayList)
-        recycleViewFm.adapter = adapter
-        recycleViewFm.layoutManager = LinearLayoutManager(activity)
+        frBinding?.recyclerViewFs?.adapter = adapter
+        frBinding?.recyclerViewFs?.layoutManager = LinearLayoutManager(activity)
 
         ArrayAdapter.createFromResource(activity as MainActivity, R.array.spinner_array, R.layout.spinner_shop
         ).also { adapterArray ->
             adapterArray.setDropDownViewResource(R.layout.spinner_shop_dropdown)
-            spinnerFs.adapter = adapterArray
-            spinnerFs.prompt = "Фильтр"
+            frBinding?.spinnerFs?.adapter = adapterArray
+            frBinding?.spinnerFs?.prompt = "Фильтр"
         }
-        spinnerFs.onItemSelectedListener = this
+        frBinding?.spinnerFs?.onItemSelectedListener = this
 
-        searchViewFs.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        frBinding?.searchViewFs?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 adapter.filter(query!!)
                 adapter.notifyDataSetChanged()
@@ -129,9 +132,14 @@ class ShopFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 shopViewModel.filterDataVm("ALL")
             }
         }
-        recycleViewFm?.adapter?.notifyDataSetChanged()
+        frBinding?.recyclerViewFs?.adapter?.notifyDataSetChanged()
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
+    }
+
+    override fun onDestroyView() {
+        frBinding = null
+        super.onDestroyView()
     }
 }

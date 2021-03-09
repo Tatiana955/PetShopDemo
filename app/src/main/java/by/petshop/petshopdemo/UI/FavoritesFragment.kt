@@ -13,10 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.petshop.petshopdemo.R
 import by.petshop.petshopdemo.RemoteModel.ShopCatalog
 import by.petshop.petshopdemo.ViewModel.ShopViewModel
-import kotlinx.android.synthetic.main.fragment_favorites.*
+import by.petshop.petshopdemo.databinding.FragmentFavoritesBinding
 
 class FavoritesFragment : Fragment() {
 
+    private var _binding: FragmentFavoritesBinding? = null
+    private val binding get() = _binding!!
     private lateinit var navController: NavController
     private lateinit var shopViewModel: ShopViewModel
     private lateinit var adapter: FavoritesAdapter
@@ -27,7 +29,8 @@ class FavoritesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         shopViewModel = ViewModelProvider(activity as MainActivity).get(ShopViewModel::class.java)
-        return inflater.inflate(R.layout.fragment_favorites, container, false)
+        _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,12 +42,12 @@ class FavoritesFragment : Fragment() {
         list.addAll(shopViewModel.favorites)
 
         adapter = FavoritesAdapter(list, this, activity as MainActivity)
-        recycleViewFf.adapter = adapter
-        recycleViewFf.layoutManager = LinearLayoutManager(activity)
+        binding.recycleViewFf.adapter = adapter
+        binding.recycleViewFf.layoutManager = LinearLayoutManager(activity)
 
         val callback = FavoritesCallback(this, adapter)
         val helper = ItemTouchHelper(callback)
-        helper.attachToRecyclerView(recycleViewFf)
+        helper.attachToRecyclerView(binding.recycleViewFf)
     }
 
     fun onCatalogSelect(position: Int){
@@ -70,5 +73,10 @@ class FavoritesFragment : Fragment() {
 
     fun checkInBasket(position: Int): Boolean{
         return shopViewModel.basket.contains(list[position])
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

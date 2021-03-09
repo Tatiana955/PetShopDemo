@@ -13,11 +13,13 @@ import androidx.navigation.fragment.findNavController
 import by.petshop.petshopdemo.R
 import by.petshop.petshopdemo.RemoteModel.*
 import by.petshop.petshopdemo.ViewModel.ShopViewModel
+import by.petshop.petshopdemo.databinding.FragmentDetailsBinding
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_details.*
 
 class DetailsFragment : Fragment() {
 
+    private var _binding: FragmentDetailsBinding? = null
+    private val binding get() = _binding!!
     private lateinit var navController: NavController
     private lateinit var shopViewModel: ShopViewModel
 
@@ -29,7 +31,8 @@ class DetailsFragment : Fragment() {
         enterTransition = tInflater.inflateTransition(R.transition.slide_right)
         exitTransition = tInflater.inflateTransition(R.transition.slide_left)
         shopViewModel = ViewModelProvider(activity as MainActivity).get(ShopViewModel::class.java)
-        return inflater.inflate(R.layout.fragment_details, container, false)
+        _binding = FragmentDetailsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,37 +40,37 @@ class DetailsFragment : Fragment() {
         navController = findNavController()
 
         shopViewModel.selectedCatalog?.let {
-            nameFd.text = it.name
-            descriptionFd.text = it.description
-            priceFd.text = it.price.toString()
+            binding.nameFd.text = it.name
+            binding.descriptionFd.text = it.description
+            binding.priceFd.text = it.price.toString()
             when (it) {
                 is Pet -> {
-                    typeOrSizeFd.text = it.petType
-                    ageOrNullFd.text = it.age
-                    genderOrWeightFd.text = it.gender
-                    breedOrConstituentsFd.text = it.breed
-                    colorOrNullFd.text = it.color
+                    binding.typeOrSizeFd.text = it.petType
+                    binding.ageOrNullFd.text = it.age
+                    binding.genderOrWeightFd.text = it.gender
+                    binding.breedOrConstituentsFd.text = it.breed
+                    binding.colorOrNullFd.text = it.color
                 }
                 is Food -> {
-                    typeOrSizeFd.text = it.petType
-                    ageOrNullFd.visibility = GONE
-                    genderOrWeightFd.text = it.weight
-                    breedOrConstituentsFd.text = it.constituents
-                    colorOrNullFd.visibility = GONE
+                    binding.typeOrSizeFd.text = it.petType
+                    binding.ageOrNullFd.visibility = GONE
+                    binding.genderOrWeightFd.text = it.weight
+                    binding.breedOrConstituentsFd.text = it.constituents
+                    binding.colorOrNullFd.visibility = GONE
                 }
                 is Stuff -> {
-                    typeOrSizeFd.text = it.size
-                    ageOrNullFd.visibility = GONE
-                    genderOrWeightFd.text = it.maxWeight
-                    breedOrConstituentsFd.text = it.material
-                    colorOrNullFd.text = it.color
+                    binding.typeOrSizeFd.text = it.size
+                    binding.ageOrNullFd.visibility = GONE
+                    binding.genderOrWeightFd.text = it.maxWeight
+                    binding.breedOrConstituentsFd.text = it.material
+                    binding.colorOrNullFd.text = it.color
                 }
                 is PetLitter -> {
-                    typeOrSizeFd.text = it.petType
-                    ageOrNullFd.visibility = GONE
-                    genderOrWeightFd.text = it.weight
-                    breedOrConstituentsFd.text = it.constituents
-                    colorOrNullFd.visibility = GONE
+                    binding.typeOrSizeFd.text = it.petType
+                    binding.ageOrNullFd.visibility = GONE
+                    binding.genderOrWeightFd.text = it.weight
+                    binding.breedOrConstituentsFd.text = it.constituents
+                    binding.colorOrNullFd.visibility = GONE
                 }
             }
             Picasso.with(activity)
@@ -75,24 +78,24 @@ class DetailsFragment : Fragment() {
                     .error(R.drawable.no_photo)
                     .placeholder(R.drawable.no_photo)
                     .resize(120, 120)
-                    .into(photoFd)
+                    .into(binding.photoFd)
 
-            ivFavoritesFd.setOnClickListener {
+            binding.ivFavoritesFd.setOnClickListener {
                 if (!checkInFavorites()){
                     addToFavorites()
-                    ivFavoritesFd.setImageResource(R.drawable.ic_favorites)
+                    binding.ivFavoritesFd.setImageResource(R.drawable.ic_favorites)
                 } else {
                     deleteFromFavorites()
-                    ivFavoritesFd.setImageResource(R.drawable.ic_not_favorites)
+                    binding.ivFavoritesFd.setImageResource(R.drawable.ic_not_favorites)
                 }
             }
-            ivBasketFd.setOnClickListener {
+            binding.ivBasketFd.setOnClickListener {
                 if (!checkInBasket()){
                     addToBasket()
-                    ivBasketFd.setImageResource(R.drawable.ic_basket)
+                    binding.ivBasketFd.setImageResource(R.drawable.ic_basket)
                 } else {
                     deleteFromBasket()
-                    ivBasketFd.setImageResource(R.drawable.ic_not_basket)
+                    binding.ivBasketFd.setImageResource(R.drawable.ic_not_basket)
                 }
             }
         }
@@ -124,5 +127,10 @@ class DetailsFragment : Fragment() {
     private fun deleteFromBasket() {
         shopViewModel.updateBasketData(shopViewModel.selectedCatalog!!.id, 0)
         shopViewModel.basket.remove(shopViewModel.selectedCatalog!!)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

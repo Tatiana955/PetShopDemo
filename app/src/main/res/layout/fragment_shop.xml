@@ -6,10 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/shadow2"
-    android:id="@+id/fr_shop"
     tools:context=".UI.ShopFragment">
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleViewFm"
+        android:id="@+id/recyclerViewFs"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/shadow2"
@@ -26,7 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/recycleViewFm"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewFs"
         android:background="@color/shadow"
         android:visibility="gone">
         <androidx.appcompat.widget.SearchView
