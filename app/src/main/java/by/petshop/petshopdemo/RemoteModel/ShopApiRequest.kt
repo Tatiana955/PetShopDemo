@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import java.util.concurrent.TimeUnit
 
-val BASE_URL = "http://newgen-pet-shop.herokuapp.com/"
+const val BASE_URL = "http://newgen-pet-shop.herokuapp.com/"
 
 interface ShopApiService {
 

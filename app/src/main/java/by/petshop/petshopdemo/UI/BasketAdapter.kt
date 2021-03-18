@@ -11,7 +11,7 @@ import by.petshop.petshopdemo.R
 import by.petshop.petshopdemo.RemoteModel.*
 import com.squareup.picasso.Picasso
 
-class BasketAdapter (val list: List<ShopCatalog>, val fragment: BasketFragment, val activity: MainActivity):
+class BasketAdapter (private val list: List<ShopCatalog>, val fragment: BasketFragment, val activity: MainActivity):
         RecyclerView.Adapter<BasketAdapter.ViewHolder>() {
 
     class ViewHolder (itemView: View): RecyclerView.ViewHolder(itemView) {

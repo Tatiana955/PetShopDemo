@@ -16,7 +16,6 @@ import by.petshop.petshopdemo.ViewModel.ShopViewModel
 import by.petshop.petshopdemo.databinding.FragmentShopBinding
 
 class ShopFragment : Fragment(), AdapterView.OnItemSelectedListener {
-
     private var frBinding: FragmentShopBinding? = null
     private lateinit var navController: NavController
     private lateinit var shopViewModel: ShopViewModel
@@ -39,6 +38,8 @@ class ShopFragment : Fragment(), AdapterView.OnItemSelectedListener {
         navController = findNavController()
 
         shopViewModel.getDataVm()
+        shopViewModel.selectFavoritesData()
+        shopViewModel.selectBasketData()
 
         shopViewModel.catalogLive.observe(activity as MainActivity, {
             shopCatalog.clear()

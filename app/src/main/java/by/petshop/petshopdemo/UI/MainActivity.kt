@@ -8,6 +8,8 @@ import androidx.navigation.NavController
 import by.petshop.petshopdemo.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
@@ -17,14 +19,18 @@ import by.petshop.petshopdemo.Repository.Repository
 import by.petshop.petshopdemo.ViewModel.ShopViewModel
 import by.petshop.petshopdemo.ViewModel.ShopViewModelFactory
 import by.petshop.petshopdemo.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private lateinit var navControllerBottom: NavController
     private lateinit var bottomNavView: BottomNavigationView
     private lateinit var shopViewModel: ShopViewModel
+    @Inject
+    lateinit var factory: ShopViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,23 +40,17 @@ class MainActivity : AppCompatActivity() {
         
         setSupportActionBar(binding.toolbar)
 
-        navController = findNavController(R.id.navHost)
+        navController = supportFragmentManager.findFragmentById(R.id.navHost)?.findNavController()!!
         setupActionBarWithNavController(navController, binding.drawerLayout)
         binding.toolbar.setupWithNavController(navController, binding.drawerLayout)
         binding.navView.setupWithNavController(navController)
 
         bottomNavView = findViewById(R.id.nav_view_bottom)
-        navControllerBottom = findNavController(R.id.navHost)
+        navControllerBottom = supportFragmentManager.findFragmentById(R.id.navHost)?.findNavController()!!
         setupActionBarWithNavController(navControllerBottom, binding.drawerLayout)
         bottomNavView.setupWithNavController(navControllerBottom)
 
-        val remoteModel = RemoteModel()
-        val localModel = LocalModel(this)
-        val repository = Repository(remoteModel, localModel)
-        val factory = ShopViewModelFactory(repository)
         shopViewModel = ViewModelProvider(this, factory).get(ShopViewModel::class.java)
-        shopViewModel.selectFavoritesData()
-        shopViewModel.selectBasketData()
     }
 
     override fun onSupportNavigateUp(): Boolean {

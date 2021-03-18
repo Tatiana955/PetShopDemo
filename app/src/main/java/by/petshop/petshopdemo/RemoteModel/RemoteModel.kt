@@ -1,10 +1,11 @@
 package by.petshop.petshopdemo.RemoteModel
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import javax.inject.Inject
 
-class RemoteModel {
-    val shopApiService = ShopApiService.create()
-    val mapper = jacksonObjectMapper()
+class RemoteModel @Inject constructor(){
+    private val shopApiService = ShopApiService.create()
+    private val mapper = jacksonObjectMapper()
 
     suspend fun getRemoteData(): MutableList<ShopCatalog>{
         return try {

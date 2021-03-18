@@ -16,7 +16,6 @@ import by.petshop.petshopdemo.ViewModel.ShopViewModel
 import by.petshop.petshopdemo.databinding.FragmentFavoritesBinding
 
 class FavoritesFragment : Fragment() {
-
     private var _binding: FragmentFavoritesBinding? = null
     private val binding get() = _binding!!
     private lateinit var navController: NavController

@@ -10,7 +10,7 @@ import by.petshop.petshopdemo.R
 import by.petshop.petshopdemo.RemoteModel.*
 import com.squareup.picasso.Picasso
 
-class FavoritesAdapter (val list: List<ShopCatalog>, val fragment: FavoritesFragment, val activity: MainActivity):
+class FavoritesAdapter (private val list: List<ShopCatalog>, val fragment: FavoritesFragment, val activity: MainActivity):
         RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
 
     class ViewHolder (itemView: View): RecyclerView.ViewHolder(itemView) {

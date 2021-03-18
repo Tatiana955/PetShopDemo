@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
+        android:name=".ShopApplication"
         android:usesCleartextTraffic="true"
         tools:targetApi="m"
         android:allowBackup="true"

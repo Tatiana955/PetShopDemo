@@ -17,7 +17,6 @@ import by.petshop.petshopdemo.databinding.FragmentDetailsBinding
 import com.squareup.picasso.Picasso
 
 class DetailsFragment : Fragment() {
-
     private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!
     private lateinit var navController: NavController

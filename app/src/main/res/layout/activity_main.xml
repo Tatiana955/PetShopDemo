@@ -27,7 +27,7 @@
             app:itemTextColor="@color/white2"
             app:itemIconTint="@drawable/color_icon"
             app:menu="@menu/bottom_nav_menu" />
-        <fragment
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/navHost"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="0dp"

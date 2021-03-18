@@ -2,8 +2,10 @@ package by.petshop.petshopdemo.Repository
 
 import by.petshop.petshopdemo.LocalModel.LocalModel
 import by.petshop.petshopdemo.RemoteModel.*
+import javax.inject.Inject
 
-class Repository (val remoteModel: RemoteModel, val localModel: LocalModel) {
+class Repository @Inject constructor(private val remoteModel: RemoteModel,
+                                     private val localModel: LocalModel) {
 
     suspend fun getData(): MutableList<ShopCatalog> {
         val catalog = mutableListOf<ShopCatalog>()

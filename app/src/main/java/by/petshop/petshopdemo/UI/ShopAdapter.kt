@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso
 import java.util.*
 
 class ShopAdapter (val list: MutableList<ShopCatalog>, val fragment: ShopFragment,
-                   val activity: MainActivity, val arraylist: ArrayList<ShopCatalog>):
+                   val activity: MainActivity, private val arraylist: ArrayList<ShopCatalog>):
         RecyclerView.Adapter<ShopAdapter.MyViewHolder>() {
 
     class MyViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){

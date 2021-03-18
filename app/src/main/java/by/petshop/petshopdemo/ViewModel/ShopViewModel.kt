@@ -1,6 +1,5 @@
 package by.petshop.petshopdemo.ViewModel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import by.petshop.petshopdemo.RemoteModel.*
@@ -8,10 +7,11 @@ import by.petshop.petshopdemo.Repository.Repository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ShopViewModel (val repository: Repository) : ViewModel() {
+class ShopViewModel @Inject constructor(private val repository: Repository): ViewModel() {
 
-    val scope = CoroutineScope(Dispatchers.IO)
+    private val scope = CoroutineScope(Dispatchers.IO)
     val catalogLive: MutableLiveData<MutableList<ShopCatalog>> by lazy {
         MutableLiveData<MutableList<ShopCatalog>>()
     }

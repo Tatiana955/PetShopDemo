@@ -17,7 +17,6 @@ import by.petshop.petshopdemo.ViewModel.ShopViewModel
 import by.petshop.petshopdemo.databinding.FragmentBasketBinding
 
 class BasketFragment : Fragment() {
-
     private var _binding: FragmentBasketBinding? = null
     private val binding get() = _binding!!
     private lateinit var navController: NavController

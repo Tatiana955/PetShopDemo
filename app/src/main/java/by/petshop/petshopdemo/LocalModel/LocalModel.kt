@@ -3,8 +3,10 @@ package by.petshop.petshopdemo.LocalModel
 import android.content.Context
 import androidx.room.Room
 import by.petshop.petshopdemo.RemoteModel.*
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class LocalModel (context: Context){
+class LocalModel @Inject constructor(@ApplicationContext context: Context){
 
     private val database: ShopDatabase = Room.databaseBuilder(
             context,

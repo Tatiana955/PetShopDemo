@@ -3,7 +3,7 @@ package by.petshop.petshopdemo.UI
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class FavoritesCallback (val ff: FavoritesFragment, val adapter: FavoritesAdapter):
+class FavoritesCallback (private val ff: FavoritesFragment, private val adapter: FavoritesAdapter):
         ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
     override fun onMove(
