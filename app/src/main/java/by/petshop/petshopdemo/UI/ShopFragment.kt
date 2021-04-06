@@ -26,11 +26,12 @@ class ShopFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         shopViewModel = ViewModelProvider(activity as MainActivity).get(ShopViewModel::class.java)
-        val binding = FragmentShopBinding.inflate(inflater, container, false)
-        frBinding = binding
-        return binding.root
+        frBinding = FragmentShopBinding.inflate(inflater, container, false)
+        (activity as MainActivity).binding.appbar.visibility = View.VISIBLE
+        (activity as MainActivity).binding.navViewBottom.visibility = View.VISIBLE
+        return frBinding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,7 +48,7 @@ class ShopFragment : Fragment(), AdapterView.OnItemSelectedListener {
             frBinding?.recyclerViewFs?.adapter?.notifyDataSetChanged()
             frBinding?.recyclerViewFs?.visibility = View.VISIBLE
             frBinding?.relativeLayout?.visibility = View.VISIBLE
-            frBinding?.progressBarFm?.visibility = View.GONE
+            frBinding?.progressBarFs?.visibility = View.GONE
             arrayList.clear()
             arrayList.addAll(shopCatalog.toTypedArray())
         })

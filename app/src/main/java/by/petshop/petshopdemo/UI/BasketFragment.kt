@@ -27,9 +27,11 @@ class BasketFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         shopViewModel = ViewModelProvider(activity as MainActivity).get(ShopViewModel::class.java)
         _binding = FragmentBasketBinding.inflate(inflater, container, false)
+        (activity as MainActivity).binding.appbar.visibility = View.VISIBLE
+        (activity as MainActivity).binding.navViewBottom.visibility = View.VISIBLE
         return binding.root
     }
 
@@ -42,8 +44,8 @@ class BasketFragment : Fragment() {
         list.addAll(shopViewModel.basket)
 
         adapter = BasketAdapter(list, this, activity as MainActivity)
-        binding.recycleViewFb.adapter = adapter
-        binding.recycleViewFb.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerViewFb.adapter = adapter
+        binding.recyclerViewFb.layoutManager = LinearLayoutManager(requireContext())
 
         binding.buttonClick.setOnClickListener {
             val toast = Toast.makeText(context, "Заказ оформлен", Toast.LENGTH_LONG)

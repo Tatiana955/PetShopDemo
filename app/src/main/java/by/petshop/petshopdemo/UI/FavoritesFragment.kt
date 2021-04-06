@@ -26,9 +26,11 @@ class FavoritesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         shopViewModel = ViewModelProvider(activity as MainActivity).get(ShopViewModel::class.java)
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
+        (activity as MainActivity).binding.appbar.visibility = View.VISIBLE
+        (activity as MainActivity).binding.navViewBottom.visibility = View.VISIBLE
         return binding.root
     }
 
@@ -41,12 +43,12 @@ class FavoritesFragment : Fragment() {
         list.addAll(shopViewModel.favorites)
 
         adapter = FavoritesAdapter(list, this, activity as MainActivity)
-        binding.recycleViewFf.adapter = adapter
-        binding.recycleViewFf.layoutManager = LinearLayoutManager(activity)
+        binding.recyclerViewFf.adapter = adapter
+        binding.recyclerViewFf.layoutManager = LinearLayoutManager(activity)
 
         val callback = FavoritesCallback(this, adapter)
         val helper = ItemTouchHelper(callback)
-        helper.attachToRecyclerView(binding.recycleViewFf)
+        helper.attachToRecyclerView(binding.recyclerViewFf)
     }
 
     fun onCatalogSelect(position: Int){

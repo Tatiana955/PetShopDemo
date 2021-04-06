@@ -25,12 +25,14 @@ class DetailsFragment : Fragment() {
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val tInflater = TransitionInflater.from(requireContext())
         enterTransition = tInflater.inflateTransition(R.transition.slide_right)
         exitTransition = tInflater.inflateTransition(R.transition.slide_left)
         shopViewModel = ViewModelProvider(activity as MainActivity).get(ShopViewModel::class.java)
         _binding = FragmentDetailsBinding.inflate(inflater, container, false)
+        (activity as MainActivity).binding.appbar.visibility = View.VISIBLE
+        (activity as MainActivity).binding.navViewBottom.visibility = View.VISIBLE
         return binding.root
     }
 

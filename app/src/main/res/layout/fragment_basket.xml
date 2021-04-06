@@ -8,7 +8,7 @@
     android:background="@color/dark_azure1"
     tools:context=".UI.BasketFragment">
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleViewFb"
+        android:id="@+id/recyclerViewFb"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_alignParentTop="true"
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/buttonAdd"
-        app:layout_constraintTop_toBottomOf="@+id/recycleViewFb"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewFb"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

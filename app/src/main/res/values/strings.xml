@@ -6,6 +6,7 @@
     <string name="title_basket">Корзина</string>
     <string name="title_store">Магазин</string>
     <string name="title_details">Подробная информация</string>
+    <string name="title_authentication">Аутентификация</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_closed">Closed</string>
     <string name="name">Названиe</string>
@@ -19,6 +20,12 @@
     <string name="description">Description</string>
     <string name="_description">Описание</string>
     <string name="buttonAdd">Оформить заказ</string>
+
+    <string name="to_com_in_text">Войти</string>
+    <string name="no_text">Нeт</string>
+    <string name="login_prompt">Выполните вход</string>
+    <string name="login_unsuccessful_msg">Вход не выполнен</string>
+    <string name="login_successful_msg">Вход успешно выполнен</string>
 
     <string-array name="spinner_array">
         <item>Все категории</item>

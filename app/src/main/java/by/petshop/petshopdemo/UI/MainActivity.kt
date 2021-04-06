@@ -7,15 +7,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import by.petshop.petshopdemo.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import by.petshop.petshopdemo.LocalModel.LocalModel
-import by.petshop.petshopdemo.RemoteModel.RemoteModel
-import by.petshop.petshopdemo.Repository.Repository
 import by.petshop.petshopdemo.ViewModel.ShopViewModel
 import by.petshop.petshopdemo.ViewModel.ShopViewModelFactory
 import by.petshop.petshopdemo.databinding.ActivityMainBinding
@@ -24,7 +19,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private lateinit var navControllerBottom: NavController
     private lateinit var bottomNavView: BottomNavigationView
